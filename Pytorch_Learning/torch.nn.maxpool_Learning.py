@@ -8,7 +8,7 @@ input = torch.tensor([[1, 2, 0, 3, 1], [0, 1, 2, 3, 1], [1, 2, 1, 0, 0], [5, 2, 
 input = torch.reshape(input, (-1, 1, 5, 5))
 
 
-# 池化的作用：进行特征降维，提升训练收敛速度
+# 池化的作用：压缩，进行特征降维，提升训练收敛速度
 
 class Pmaxnn(nn.Module):
     def __init__(self):
