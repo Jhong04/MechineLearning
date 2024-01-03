@@ -4,7 +4,7 @@ import torch
 from torch.nn import Conv2d, MaxPool2d, Linear, Softmax, Sequential, CrossEntropyLoss, Flatten
 from torch.utils.data import DataLoader
 
-dataset = torchvision.datasets.CIFAR10("../Dataset-Mechine_Learning", train=False, download=False,
+dataset = torchvision.datasets.CIFAR10("../Dataset-Mechine_Learning", train=True, download=False,
                                        transform=torchvision.transforms.ToTensor())
 dataloader = DataLoader(dataset, batch_size=64)
 
@@ -37,7 +37,7 @@ loss = CrossEntropyLoss()
 # 设置优化器,使用随机梯度下降算法
 optim = torch.optim.SGD(my_nn.parameters(), lr=0.01)
 
-for epoch in range(20):
+for epoch in range(50):
     running_loss = 0.0
     for data in dataloader:
         imgs, targets = data
@@ -49,3 +49,15 @@ for epoch in range(20):
         optim.step()
         running_loss = running_loss + result_loss
     print(running_loss)
+
+# # 保存整个模型
+# torch.save(my_nn, "../model/myModel1")
+# 只保存参数
+torch.save(my_nn.state_dict(), "../model/myModel1_para")
+
+# 模型加载
+# 整个模型：
+# model=torch.load("../model/myModel1")
+# 参数：
+# model=NN1()
+# model.load_state_dict(torch.load("../model/myModel1_para"))
