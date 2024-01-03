@@ -39,7 +39,6 @@ total_test_step = 0
 epoch = 50
 
 time_start = time.time()
-
 for i in range(epoch):
     for data in test_dataloader:
         imgs, targets = data
@@ -54,7 +53,7 @@ for i in range(epoch):
         total_train_step += 1
         if total_train_step % 100 == 0:
             time_end = time.time()
-            print("训练100步时间：{}".format(time_start - time_end))
+            print("训练100步时间：{}".format(time_end - time_start))
             print("训练次数：{},loss: {}".format(total_train_step, loss.item()))
         writer.add_scalar("train_loss", loss.item(), total_train_step)
 
